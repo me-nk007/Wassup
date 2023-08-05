@@ -2,6 +2,7 @@ const socket = io()
 let name;
 
 let textarea = document.querySelector('#textarea')
+let send = document.querySelector('#send')
 let messageArea = document.querySelector('.message__area')
 let brand = document.querySelector('.brand')
 let notification = document.querySelector('.notification')
@@ -13,6 +14,7 @@ do{
 
 
 let brandName = document.createElement('h1')
+
 
 // Creating a schema
 let markup = `
@@ -29,16 +31,23 @@ brand.appendChild(brandName)
 
 // Sending a message
 // If we press any button in keyboard, then "keyup" event will be triggered
-textarea.addEventListener('keyup', (e)=>{
+textarea.addEventListener('keydown', (e)=>{
     if(e.key === 'Enter'){
-        sendMessage(e.target.value)
+        if (e.target.value === '') {
+            alert('Please Enter a value');
+        } 
+        else {
+            sendMessage(e.target.value);
+        } 
+        e.preventDefault();
+
     }
 })
 
 function sendMessage(message){
     let msg = {
         user: name,
-        message: message.trim()
+        message: message
     }
     // Append
     appendMessage(msg, 'outgoing')
@@ -51,6 +60,8 @@ function sendMessage(message){
     textarea.value = ""
     scrollToBottom()
 }
+
+
 
 
 function appendMessage(msg, type){
@@ -74,6 +85,18 @@ function appendMessage(msg, type){
 }
 
 
+// Adding Send Button
+send.addEventListener('click', (e)=>{
+    if (textarea.value === '') {
+        alert('Please Enter a value');
+    } 
+    else {
+        sendMessage(textarea.value);
+    } 
+})
+
+
+
 // Receiving the message in client which will only run on browser not on server that is in console of Brave browser
     socket.on('message',(msg)=>{
         // console.log(msg)
@@ -86,6 +109,7 @@ function appendMessage(msg, type){
         audio.setAttribute('src','dong.mp3');
         audio.loop = false;
         audio.play();  
+        
         // Adding Notification
         // let brandName = document.createElement('title')
         // let notificationMarkup = `<title>(1)${msg.message}</title>`
@@ -96,3 +120,11 @@ function appendMessage(msg, type){
     function scrollToBottom(){
         messageArea.scrollTop = messageArea.scrollHeight
     }
+
+
+
+    // TODO
+    // 1) ADD NOTICATIONS
+    // 2) ADD IMAGES
+    // 3) ADD GROUP FEATURES
+    // 4) END TO END ENCRYPTION

@@ -18,8 +18,10 @@
         <div class="message__area">
 
         </div>
-        <div>
-            <textarea  id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
+        <div class="container">
+            <textarea  id="textarea" class="element cols="30" rows="1" placeholder="Write a message..."></textarea>
+            <i class="fa-solid fa-paper-plane fa-2xl element send" style="color: #44ce54;" id="send"></i>
+            <!-- <button class="element send" onClick={handleClick}>Send</button> -->
         </div>
      </section>
 
@@ -28,5 +30,6 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script src="/client.js"></script>
+    <script src="https://kit.fontawesome.com/b7f54a3b82.js" crossorigin="anonymous"></script>
 </body>
 </html>

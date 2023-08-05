@@ -47,7 +47,7 @@ section.chat__section{
 }
 
 textarea{
-    width: 100%;
+    width: 90%;
     border: none;
     padding: 20px;
     font-size: 16px;
@@ -85,3 +85,18 @@ textarea{
     font-size: 14px;
 }
 
+.container {
+    white-space: nowrap; /* Prevent line breaks between elements */
+  }
+
+  .element {
+    display: inline-block;
+    margin-right: 5px; /* Optional spacing between the elements */
+  }
+
+  .send{
+    margin-left: 9px;
+    position: relative;
+    top: -15px;
+    right: -1px;
+  }
